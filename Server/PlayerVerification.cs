@@ -135,7 +135,7 @@ public class PlayerVerification : EzNode
     }
 
     [Remote]
-    void ReceiveToken(string token)
+    public void ReceiveToken(string token)
     {
         var playerId = GetTree().GetRpcSenderId();
         Verify(playerId, token);
@@ -143,13 +143,13 @@ public class PlayerVerification : EzNode
     }
 
     [Remote]
-    void ReceiveCreateAccountRequest(Dictionary data)
+    public void ReceiveCreateAccountRequest(Dictionary data)
     {
         Print("Receive create account request.");
     }
 
     [Remote]
-    void ClientReady()
+    public void ClientReady()
     {
         var playerId = GetTree().GetRpcSenderId();
         Print("Client ready.");

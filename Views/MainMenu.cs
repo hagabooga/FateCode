@@ -3,12 +3,12 @@ using System;
 using Utility;
 using static Godot.GD;
 
-namespace MainMenu
+namespace Views
 {
-    public class View : EzPrefab
+    public class MainMenu : EzPrefab
     {
-        public readonly Login.View LoginView;
-        public readonly CreateAccount.View CreateAccountView;
+        public readonly Views.Login LoginView;
+        public readonly Views.CreateAccount CreateAccountView;
 
         public override void _Ready()
         {

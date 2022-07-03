@@ -18,7 +18,7 @@ public class HubConnection : EzClient<HubConnection>
     }
 
     [Remote]
-    void ReceiveLoginToken(string token, string username)
+    public void ReceiveLoginToken(string token, string username)
     {
         Print($"Receive login token: {token} {username}");
         playerVerification.ExpectedTokens[token] = username;

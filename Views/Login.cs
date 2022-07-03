@@ -4,19 +4,19 @@ using static Godot.GD;
 using Utility;
 
 
-namespace Login
+namespace Views
 {
-    public class View : EzPrefab
+    public class Login : EzPrefab
     {
         public readonly Control Root;
         public readonly Label Title, Result;
         public readonly LineEdit Username, Password, IpAddress;
-        public readonly Button Login, SignUp;
+        public readonly Button LoginButton, SignUp;
         public readonly VBoxContainer Content;
 
         public void Clear()
         {
-            Login.Text = "";
+            LoginButton.Text = "";
             Password.Text = "";
         }
     }

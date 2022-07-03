@@ -23,7 +23,7 @@ accounts (
     {
         DatabaseName = Engine.EditorHint ?
             OS.GetExecutablePath().GetBaseDir() + "\\" :
-            "res://Database/";
+            "res://FateCode/Authentication/Database/";
         Columns = new Array<string>() { "username", "password", "salt" };
         Sqlite = Load<Script>("res://addons/godot-sqlite/bin/gdsqlite.gdns");
         Database = Sqlite.Call("new") as Godot.Object;
