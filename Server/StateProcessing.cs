@@ -22,7 +22,6 @@ public class StateProcessing : EzNode
 
     public StateProcessing()
     {
-
     }
 
     public override void _PhysicsProcess(float delta)
@@ -61,7 +60,7 @@ public class StateProcessing : EzNode
     }
 
     [Remote]
-    void ReceivePlayerState(Dictionary playerState)
+    public void ReceivePlayerState(Dictionary playerState)
     {
         var playerId = GetTree().GetRpcSenderId();
         Print(playerState);

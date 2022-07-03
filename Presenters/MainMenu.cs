@@ -3,17 +3,17 @@ using System;
 using Utility;
 using static Godot.GD;
 
-namespace MainMenu
+namespace Presenters
 {
-    public class Controller : EzNode
+    public class MainMenu : EzNode
     {
-        readonly Login.Presenter loginPresenter;
-        readonly CreateAccount.Presenter createAccountPresenter;
-        readonly Gateway gateway;
+        readonly Presenters.Login loginPresenter;
+        readonly Presenters.CreateAccount createAccountPresenter;
+        readonly Client.Gateway gateway;
 
-        public Controller(Login.Presenter loginPresenter,
-                         CreateAccount.Presenter createAccountPresenter,
-                         Gateway gateway)
+        public MainMenu(Presenters.Login loginPresenter,
+                        Presenters.CreateAccount createAccountPresenter,
+                        Client.Gateway gateway)
         {
             this.loginPresenter = loginPresenter;
             this.createAccountPresenter = createAccountPresenter;
