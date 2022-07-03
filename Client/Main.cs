@@ -32,8 +32,8 @@ namespace Client
             main.RegisterInstance(certificate);
 
             main.RegisterInstance<ClientOptions<Gateway>>(new ClientOptions<Gateway>("localhost", 1969));
-            // main.RegisterSingleton<Models.Login>();
-            // main.RegisterSingleton<CreateAccount.Model>();
+            main.RegisterSingleton<Models.Login>();
+            main.RegisterSingleton<Models.CreateAccount>();
 
             var typesToAddAsChild = new[] {
                 typeof(Gateway),
