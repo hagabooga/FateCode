@@ -28,9 +28,16 @@ namespace Presenters
         {
             loginPresenter.success += () =>
             {
+                loginPresenter.SetInteractable(false);
+
                 gateway.RequestLoginRequest(loginPresenter.Username,
                                             loginPresenter.Password,
                                             loginPresenter.IpAddress);
+                gateway.connectionFailed += () =>
+                {
+                    loginPresenter.DisplayShortPopupTween("Connected to server failed!");
+                    loginPresenter.SetInteractable(true);
+                };
             };
 
             loginPresenter.signUpPressed += () =>
@@ -58,9 +65,15 @@ namespace Presenters
             createAccountPresenter.success += () =>
             {
                 Print("Requesting new account.");
+                createAccountPresenter.SetInteractable(false);
                 gateway.RequestCreateAccount(createAccountPresenter.Username,
                                              createAccountPresenter.Password,
                                              createAccountPresenter.IpAddress);
+                gateway.connectionFailed += () =>
+                {
+                    createAccountPresenter.DisplayShortPopupTween("Connected to server failed!");
+                    createAccountPresenter.SetInteractable(true);
+                };
             };
 
             createAccountPresenter.goBackToLoginPressed += () =>

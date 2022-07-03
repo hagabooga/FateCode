@@ -75,6 +75,7 @@ namespace Utility
         private void OnConnectionFailed()
         {
             Print($"Client {Name}: Connection to server has failed.");
+            CustomMultiplayer = null;
             connectionFailed?.Invoke();
         }
 

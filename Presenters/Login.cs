@@ -33,13 +33,21 @@ namespace Presenters
             AddShortPopupTweenToFailed();
         }
 
-
         public override void _Ready()
         {
             base._Ready();
         }
 
         public void SetVisible(bool yes) => view.Root.Visible = yes;
+
+        public void SetInteractable(bool on)
+        {
+            view.Username.Editable = on;
+            view.Password.Editable = on;
+            view.IpAddress.Editable = on;
+            view.LoginButton.Disabled = !on;
+            view.SignUp.Disabled = !on;
+        }
 
         private void IpAddressTextChanged(string text)
         {

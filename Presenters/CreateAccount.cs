@@ -35,6 +35,15 @@ namespace Presenters
 
         public void SetVisible(bool yes) => view.Root.Visible = yes;
 
+        public void SetInteractable(bool on)
+        {
+            view.Username.Editable = on;
+            view.Password.Editable = on;
+            view.ConfirmPassword.Editable = on;
+            view.IpAddress.Editable = on;
+            view.CreateAccountButton.Disabled = !on;
+            view.GoBackToLogin.Disabled = !on;
+        }
 
         private void GoBackToLoginButtonPressed()
         {
@@ -76,5 +85,6 @@ namespace Presenters
                 InvokeSuccess();
             }
         }
+
     }
 }
