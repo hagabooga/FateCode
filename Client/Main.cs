@@ -31,7 +31,7 @@ namespace Client
             certificate.Load("res://Certificate/X509Certificate.crt");
             Container.RegisterInstance(certificate);
 
-            Container.RegisterInstance<ClientOptions<Entrance>>(new ClientOptions<Entrance>("localhost", 1969));
+            Container.RegisterInstance(new ClientOptions<Entrance>("localhost", 1969));
             Container.RegisterSingleton<Models.Login>();
             Container.RegisterSingleton<Models.CreateAccount>();
 
