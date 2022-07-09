@@ -46,6 +46,12 @@ namespace Utility
             }
         }
 
+        public static void SetTextAndEmit(this LineEdit lineEdit, string text)
+        {
+            lineEdit.Text = text;
+            lineEdit.EmitSignal("text_changed", text);
+        }
+
         // public static T RegisterSingletonAndGetInstance<T>(this SimpleInjector.Container container) where T : Node
         // {
         //     container.RegisterSingleton<T>();

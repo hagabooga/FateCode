@@ -36,6 +36,8 @@ namespace Presenters
         public override void _Ready()
         {
             base._Ready();
+            view.Username.SetTextAndEmit("hagabooga");
+            view.Password.SetTextAndEmit("asdasd123");
         }
 
         public void SetVisible(bool yes) => view.Root.Visible = yes;

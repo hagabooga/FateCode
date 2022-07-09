@@ -55,6 +55,7 @@ namespace Presenters
                 }
                 else
                 {
+                    loginPresenter.DisplayShortPopupTween("Successful login!");
                     // ACTUAL LOGIN HERE
                 }
             };
