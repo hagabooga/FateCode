@@ -56,7 +56,7 @@ namespace Authentication
                     var timeStamp = OS.GetUnixTime().ToString();
                     token = hashed + timeStamp;
                     Print($"Token to be sent: {token}");
-                    var server = "Server 1"; // Replace with load balancers
+                    var server = "Server 0"; // Replace with load balancers
                     servers.DistributeLoginToken(server, token, username);
                 }
             }

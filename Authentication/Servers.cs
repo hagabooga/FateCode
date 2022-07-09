@@ -17,6 +17,7 @@ namespace Authentication
 
         public void DistributeLoginToken(string server, string token, string username)
         {
+            Print(server);
             var serverId = (int)servers[server];
             RpcId(serverId, "ReceiveLoginToken", token, username);
         }
@@ -25,7 +26,9 @@ namespace Authentication
         protected override void OnNetworkPeerConnected(int serverId)
         {
             Print($"Server {serverId} connected.");
-            servers[$"Server {servers.Count}"] = serverId;
+
+            string v = $"Server {servers.Count}";
+            servers[v] = serverId;
             Print(servers);
         }
     }
