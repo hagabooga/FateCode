@@ -9,15 +9,15 @@ namespace Presenters
     {
         readonly Presenters.Login loginPresenter;
         readonly Presenters.CreateAccount createAccountPresenter;
-        readonly Client.Entrance gateway;
+        readonly Client.Entrance entrance;
 
         public MainMenu(Presenters.Login loginPresenter,
                         Presenters.CreateAccount createAccountPresenter,
-                        Client.Entrance gateway)
+                        Client.Entrance entrance)
         {
             this.loginPresenter = loginPresenter;
             this.createAccountPresenter = createAccountPresenter;
-            this.gateway = gateway;
+            this.entrance = entrance;
 
             SetupLogin();
             SetupCreateAccount();
@@ -30,10 +30,10 @@ namespace Presenters
             {
                 loginPresenter.SetInteractable(false);
 
-                gateway.RequestLoginRequest(loginPresenter.Username,
+                entrance.RequestLoginRequest(loginPresenter.Username,
                                             loginPresenter.Password,
                                             loginPresenter.IpAddress);
-                gateway.connectionFailed += () =>
+                entrance.connectionFailed += () =>
                 {
                     loginPresenter.DisplayShortPopupTween("Connected to server failed!");
                     loginPresenter.SetInteractable(true);
@@ -46,7 +46,7 @@ namespace Presenters
                 createAccountPresenter.SetVisible(true);
             };
 
-            gateway.receivedLoginRequest += (result, token) =>
+            entrance.receivedLoginRequest += (result, token) =>
             {
                 Print($"Received login request: {result}, {token}.");
                 if (result != Error.Ok)
@@ -66,10 +66,10 @@ namespace Presenters
             {
                 Print("Requesting new account.");
                 createAccountPresenter.SetInteractable(false);
-                gateway.RequestCreateAccount(createAccountPresenter.Username,
+                entrance.RequestCreateAccount(createAccountPresenter.Username,
                                              createAccountPresenter.Password,
                                              createAccountPresenter.IpAddress);
-                gateway.connectionFailed += () =>
+                entrance.connectionFailed += () =>
                 {
                     createAccountPresenter.DisplayShortPopupTween("Connected to server failed!");
                     createAccountPresenter.SetInteractable(true);
@@ -82,7 +82,7 @@ namespace Presenters
                 createAccountPresenter.SetVisible(false);
             };
 
-            gateway.receivedCreateAccountRequest += (result) =>
+            entrance.receivedCreateAccountRequest += (result) =>
             {
                 Print($"Received create account request: {result}.");
                 if (result != Error.Ok)
