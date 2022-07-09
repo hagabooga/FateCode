@@ -9,11 +9,11 @@ namespace Presenters
     {
         readonly Presenters.Login loginPresenter;
         readonly Presenters.CreateAccount createAccountPresenter;
-        readonly Client.Gateway gateway;
+        readonly Client.Entrance gateway;
 
         public MainMenu(Presenters.Login loginPresenter,
                         Presenters.CreateAccount createAccountPresenter,
-                        Client.Gateway gateway)
+                        Client.Entrance gateway)
         {
             this.loginPresenter = loginPresenter;
             this.createAccountPresenter = createAccountPresenter;

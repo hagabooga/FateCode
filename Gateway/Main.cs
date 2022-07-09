@@ -12,7 +12,7 @@ namespace Gateway
             var main = new SimpleInjector.Container();
 
             main.RegisterInstance(new ClientOptions<Authentication>("localhost", 1911));
-            main.RegisterInstance(new ServerOptions<Gateway>(1969, 100));
+            main.RegisterInstance(new ServerOptions<Entrance>(1969, 100));
 
             X509Certificate certificate = new X509Certificate();
             certificate.Load("res://Certificate/X509Certificate.crt");
@@ -24,11 +24,11 @@ namespace Gateway
 
 
             main.RegisterSingleton<Authentication>();
-            main.RegisterSingleton<Gateway>();
+            main.RegisterSingleton<Entrance>();
 
 
             AddChild(main.GetInstance<Authentication>());
-            AddChild(main.GetInstance<Gateway>());
+            AddChild(main.GetInstance<Entrance>());
 
             // var gateway = this.AddChildReturn(new Gateway(new ServerOptions(1969, 100),
             //                                               certificate,

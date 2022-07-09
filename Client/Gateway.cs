@@ -5,12 +5,12 @@ using static Godot.GD;
 
 namespace Client
 {
-    public class Gateway : EzClient<Gateway>
+    public class Entrance : EzClient<Entrance>
     {
         public event Handlers.ResultToken receivedLoginRequest;
         public event Handlers.Result receivedCreateAccountRequest;
 
-        public Gateway(ClientOptions<Gateway> options,
+        public Entrance(ClientOptions<Entrance> options,
                        X509Certificate certificate) :
                        base(options,
                             false,
@@ -23,7 +23,7 @@ namespace Client
             CreateClient(ipAddress);
             connectedToServer += () =>
             {
-                RpcId(1, "ReceiveLoginRequest", username, password.SHA256Text());
+                RpcId(1, nameof(Gateway.Entrance.ReceiveLoginRequest), username, password.SHA256Text());
             };
         }
 
@@ -32,7 +32,7 @@ namespace Client
             CreateClient(ipAddress);
             connectedToServer += () =>
             {
-                RpcId(1, "ReceiveCreateAccountRequest", username, password.SHA256Text());
+                RpcId(1, nameof(Gateway.Entrance.ReceiveCreateAccountRequest), username, password.SHA256Text());
             };
         }
 

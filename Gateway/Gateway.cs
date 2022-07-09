@@ -4,11 +4,11 @@ using Utility;
 using static Godot.GD;
 namespace Gateway
 {
-    public class Gateway : EzServer<Gateway>
+    public class Entrance : EzServer<Entrance>
     {
         private readonly Authentication authentication;
 
-        public Gateway(ServerOptions<Gateway> options,
+        public Entrance(ServerOptions<Entrance> options,
                        X509Certificate certificate,
                        CryptoKey cryptoKey,
                        Authentication authentication) : base(options, certificate, cryptoKey)
@@ -37,7 +37,7 @@ namespace Gateway
         }
 
         [Remote]
-        void ReceiveLoginRequest(string username, string password)
+        public void ReceiveLoginRequest(string username, string password)
         {
             Print("Login request received.");
             var playerId = CustomMultiplayer.GetRpcSenderId();
@@ -45,7 +45,7 @@ namespace Gateway
         }
 
         [Remote]
-        void ReceiveCreateAccountRequest(string username, string password)
+        public void ReceiveCreateAccountRequest(string username, string password)
         {
             Print("Create account request received.");
             var playerId = CustomMultiplayer.GetRpcSenderId();

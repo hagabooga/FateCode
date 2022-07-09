@@ -31,12 +31,12 @@ namespace Client
             certificate.Load("res://Certificate/X509Certificate.crt");
             Container.RegisterInstance(certificate);
 
-            Container.RegisterInstance<ClientOptions<Gateway>>(new ClientOptions<Gateway>("localhost", 1969));
+            Container.RegisterInstance<ClientOptions<Entrance>>(new ClientOptions<Entrance>("localhost", 1969));
             Container.RegisterSingleton<Models.Login>();
             Container.RegisterSingleton<Models.CreateAccount>();
 
             var typesToAddAsChild = new[] {
-                typeof(Gateway),
+                typeof(Entrance),
                 typeof(Presenters.Login),
                 typeof(Presenters.CreateAccount),
                 typeof(Presenters.MainMenu),
