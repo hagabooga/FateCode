@@ -7,6 +7,8 @@ namespace Client.Entity
 {
     public class BaseStat
     {
+        public event Action baseChanged;
+
         readonly Dictionary<int, int> bonuses = new Dictionary<int, int>();
 
         public int Base { get; }

@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Client.Entity
 {
-    public class CurrentStat : BaseStat
+    public class CurrentMaxStat : BaseStat
     {
+        public event Handlers.CurrentMax currentMaxChange;
+
         private int _current;
 
         public int Current
@@ -18,12 +20,12 @@ namespace Client.Entity
             }
         }
 
-        public CurrentStat(int @base) : base(@base)
+        public CurrentMaxStat(int @base) : base(@base)
         {
             Current = Base;
         }
 
-        public static implicit operator int(CurrentStat currentStat) => currentStat.Current;
-        public static implicit operator CurrentStat(int value) => new CurrentStat(value);
+        public static implicit operator int(CurrentMaxStat currentStat) => currentStat.Current;
+        public static implicit operator CurrentMaxStat(int value) => new CurrentMaxStat(value);
     }
 }

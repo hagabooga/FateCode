@@ -21,14 +21,13 @@ namespace Client.Entity
         public BaseStat CritMulti { get; }
         public BaseStat AttackSpeed { get; }
 
-        public CurrentStat Health { get; }
-        public CurrentStat Mana { get; }
-        public CurrentStat Energy { get; }
-        public CurrentStat Experience { get; }
-        public CurrentStat AbilityPoints { get; private set; }
+        public CurrentMaxStat Health { get; }
+        public CurrentMaxStat Mana { get; }
+        public CurrentMaxStat Energy { get; }
+        public CurrentMaxStat Experience { get; }
+        public CurrentMaxStat AbilityPoints { get; }
 
         public int Level { get; private set; }
         public string Job { get; private set; }
-
     }
 }
