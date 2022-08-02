@@ -28,7 +28,7 @@ namespace Client
             Container.RegisterInstance(MainMenuView.CreateAccountView);
 
             X509Certificate certificate = new X509Certificate();
-            certificate.Load("res://Certificate/X509Certificate.crt");
+            certificate.Load("res://FadeCode/Certificate/X509Certificate.crt");
             Container.RegisterInstance(certificate);
 
             Container.RegisterInstance(new ClientOptions<Entrance>("localhost", 1969));

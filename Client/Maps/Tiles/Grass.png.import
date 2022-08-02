@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sara.png-749b4a4a2d0a0cee15b8a150134404a6.stex"
+path="res://.import/Grass.png-a3794cb20009debae1f7ca61d3b5daea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://FateCode/Client/Player/sara.png"
-dest_files=[ "res://.import/sara.png-749b4a4a2d0a0cee15b8a150134404a6.stex" ]
+source_file="res://FateCode/Client/Maps/Tiles/Grass.png"
+dest_files=[ "res://.import/Grass.png-a3794cb20009debae1f7ca61d3b5daea.stex" ]
 
 [params]
 

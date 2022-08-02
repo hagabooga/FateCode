@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://FateCode/Client/Player/PlayerTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://FateCode/Client/Player/Player.cs" type="Script" id=2]
+[ext_resource path="res://Segoeuil8.tres" type="DynamicFont" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 32.0
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+Speed = 0.0
+MaxSpeed = 150.0
+Acceleration = 1000.0
+
+[node name="Collisionbox" parent="KinematicBody2D" index="2"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="HurtboxShape" parent="KinematicBody2D/Hurtbox" index="0"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, -12 )
+shape = SubResource( 2 )
+
+[node name="EntityUI" parent="KinematicBody2D" index="4"]
+margin_bottom = 29.0
+
+[node name="DisplayName" parent="KinematicBody2D/EntityUI/DisplayNamePanel" index="0"]
+margin_top = 2.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="5"]
+current = true

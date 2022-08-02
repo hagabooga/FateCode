@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sara.png-749b4a4a2d0a0cee15b8a150134404a6.stex"
+path="res://.import/WaterCliff.png-d1588d13add457ba0895e3ee9c8d8f35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://FateCode/Client/Player/sara.png"
-dest_files=[ "res://.import/sara.png-749b4a4a2d0a0cee15b8a150134404a6.stex" ]
+source_file="res://FateCode/Client/Maps/Tiles/WaterCliff.png"
+dest_files=[ "res://.import/WaterCliff.png-d1588d13add457ba0895e3ee9c8d8f35.stex" ]
 
 [params]
 

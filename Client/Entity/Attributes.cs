@@ -2,32 +2,78 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Utility;
 
-namespace Client.Entity
+namespace Client
 {
-    public class Attributes
+    public class Attributes : EzPrefab
     {
-        public BaseStat Strength { get; }
-        public BaseStat Intelligence { get; }
-        public BaseStat Agility { get; }
-        public BaseStat Luck { get; }
-        public BaseStat Physical { get; }
-        public BaseStat Magical { get; }
-        public BaseStat Armor { get; }
-        public BaseStat Resist { get; }
-        public BaseStat Hit { get; }
-        public BaseStat Dodge { get; }
-        public BaseStat Crit { get; }
-        public BaseStat CritMulti { get; }
-        public BaseStat AttackSpeed { get; }
+        public BaseStat Strength { get; protected set; } = new BaseStat(1);
+        public BaseStat Intelligence { get; protected set; } = new BaseStat(1);
+        public BaseStat Agility { get; protected set; } = new BaseStat(1);
+        public BaseStat Luck { get; protected set; } = new BaseStat(1);
+        public BaseStat Physical { get; protected set; } = new BaseStat(1);
+        public BaseStat Magical { get; protected set; } = new BaseStat(1);
+        public BaseStat Armor { get; protected set; } = new BaseStat(1);
+        public BaseStat Resist { get; protected set; } = new BaseStat(1);
+        public BaseStat Hit { get; protected set; } = new BaseStat(1);
+        public BaseStat Dodge { get; protected set; } = new BaseStat(1);
+        public BaseStat Crit { get; protected set; } = new BaseStat(1);
+        public BaseStat CritMulti { get; protected set; } = new BaseStat(1);
+        public BaseStat AttackSpeed { get; protected set; } = new BaseStat(1);
 
-        public CurrentMaxStat Health { get; }
-        public CurrentMaxStat Mana { get; }
-        public CurrentMaxStat Energy { get; }
-        public CurrentMaxStat Experience { get; }
-        public CurrentMaxStat AbilityPoints { get; }
+        public MaxStat MaxHealth { get; protected set; } = new MaxStat(1);
+        public MaxStat MaxMana { get; protected set; } = new MaxStat(1);
+        public MaxStat MaxEnergy { get; protected set; } = new MaxStat(1);
+        public MaxStat MaxExperience { get; protected set; } = new MaxStat(1);
+        public MaxStat MaxAbilityPoints { get; protected set; } = new MaxStat(1);
+        public MaxStat MaxSkillPoints { get; protected set; } = new MaxStat(1);
 
-        public int Level { get; private set; }
-        public string Job { get; private set; }
+        public int Level { get; protected set; }
+        public string Job { get; protected set; }
+
+        public Attributes()
+        {
+            new[]
+            {
+                Strength,
+                Intelligence,
+                Agility,
+                Luck,
+                Physical,
+                Magical,
+                Armor,
+                Resist,
+                Hit,
+                Dodge,
+                Crit,
+                CritMulti,
+                AttackSpeed,
+                MaxHealth,
+                MaxMana,
+                MaxEnergy,
+                MaxExperience,
+                MaxAbilityPoints,
+                MaxSkillPoints,
+            }
+            .ForEach(x =>
+            {
+                x.baseChanged += UpdateStats;
+            });
+        }
+
+        public void LevelUp()
+        {
+            MaxExperience.Current = 0;
+            Level += 1;
+            MaxAbilityPoints.Current += 3;
+            MaxSkillPoints += 3;
+            UpdateStats();
+        }
+
+        protected virtual void UpdateStats()
+        {
+        }
+
     }
 }

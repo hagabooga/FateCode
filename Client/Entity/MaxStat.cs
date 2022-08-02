@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Client.Entity
+namespace Client
 {
-    public class CurrentMaxStat : BaseStat
+    public class MaxStat : BaseStat
     {
         public event Handlers.CurrentMax currentMaxChange;
 
@@ -20,12 +20,14 @@ namespace Client.Entity
             }
         }
 
-        public CurrentMaxStat(int @base) : base(@base)
+        public MaxStat(int @base) : base(@base)
         {
             Current = Base;
         }
 
-        public static implicit operator int(CurrentMaxStat currentStat) => currentStat.Current;
-        public static implicit operator CurrentMaxStat(int value) => new CurrentMaxStat(value);
+        public static implicit operator int(MaxStat currentStat) => currentStat.Current;
+        public static implicit operator MaxStat(int value) => new MaxStat(value);
+
+        public void Full() => Current = Value;
     }
 }

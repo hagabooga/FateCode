@@ -57,6 +57,7 @@ namespace Presenters
                 {
                     loginPresenter.DisplayShortPopupTween("Successful login!");
                     // ACTUAL LOGIN HERE
+                    GetTree().ChangeScene("res://FateCode/Client/Maps/TestMap.tscn");
                 }
             };
         }
