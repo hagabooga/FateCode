@@ -27,6 +27,8 @@ namespace Server
             peerConnected += playerVerification.Start;
 
             playerVerification.verificationFailed += id => network.DisconnectPeer(id);
+
+            GetTree().NetworkPeer = network;
         }
     }
 }
