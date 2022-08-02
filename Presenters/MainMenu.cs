@@ -10,14 +10,17 @@ namespace Presenters
         readonly Presenters.Login loginPresenter;
         readonly Presenters.CreateAccount createAccountPresenter;
         readonly Client.Entrance entrance;
+        readonly Client.GameServer gameServer;
 
         public MainMenu(Presenters.Login loginPresenter,
                         Presenters.CreateAccount createAccountPresenter,
-                        Client.Entrance entrance)
+                        Client.Entrance entrance,
+                        Client.GameServer gameServer)
         {
             this.loginPresenter = loginPresenter;
             this.createAccountPresenter = createAccountPresenter;
             this.entrance = entrance;
+            this.gameServer = gameServer;
 
             SetupLogin();
             SetupCreateAccount();
@@ -57,7 +60,9 @@ namespace Presenters
                 {
                     loginPresenter.DisplayShortPopupTween("Successful login!");
                     // ACTUAL LOGIN HERE
-                    GetTree().ChangeScene("res://FateCode/Client/Maps/TestMap.tscn");
+                    gameServer.Token = token;
+                    gameServer.ConnectToServer();
+                    // GetTree().ChangeScene("res://FateCode/Client/Maps/TestMap.tscn");
                 }
             };
         }

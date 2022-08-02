@@ -6,21 +6,24 @@ using static Godot.GD;
 using Utility;
 using System.Linq;
 
-public class HubConnection : EzClient<HubConnection>
+namespace Server
 {
-    readonly PlayerVerification playerVerification;
-
-    public HubConnection(PlayerVerification playerVerification,
-                         ClientOptions<HubConnection> options) :
-                         base(options)
+    public class HubConnection : EzClient<HubConnection>
     {
-        this.playerVerification = playerVerification;
-    }
+        readonly PlayerVerification playerVerification;
 
-    [Remote]
-    public void ReceiveLoginToken(string token, string username)
-    {
-        Print($"Receive login token: {token} {username}");
-        playerVerification.ExpectedTokens[token] = username;
+        public HubConnection(PlayerVerification playerVerification,
+                             ClientOptions<HubConnection> options) :
+                             base(options)
+        {
+            this.playerVerification = playerVerification;
+        }
+
+        [Remote]
+        public void ReceiveLoginToken(string token, string username)
+        {
+            Print($"Receive login token: {token} {username}");
+            playerVerification.ExpectedTokens[token] = username;
+        }
     }
 }

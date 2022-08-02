@@ -8,20 +8,15 @@ using System.Linq;
 
 public class PlayerVerification : EzNode
 {
-    [Signal] public delegate void VerificationFailed(int playerId);
-
-
-    readonly Dictionary
-        awaitingVerification = new Dictionary(),
-        expectedTokens = new Dictionary();
+    public event Handlers.PlayerId verificationFailed;
 
     readonly Timer verificationExpiration = new Timer();
     readonly Timer tokenExpiration = new Timer();
 
     private readonly StateProcessing stateProcessing;
 
-    public Dictionary AwaitingVerification => awaitingVerification;
-    public Dictionary ExpectedTokens => expectedTokens;
+    public Dictionary AwaitingVerification { get; } = new Dictionary();
+    public Dictionary ExpectedTokens { get; } = new Dictionary();
 
     public PlayerVerification(StateProcessing stateProcessing)
     {
@@ -30,6 +25,7 @@ public class PlayerVerification : EzNode
 
     public void Start(int playerId)
     {
+        Print("Starting verification.");
         Dictionary timeStamp = new Dictionary();
         timeStamp["timeStamp"] = OS.GetUnixTime();
         AwaitingVerification[playerId] = timeStamp;
@@ -58,7 +54,7 @@ public class PlayerVerification : EzNode
         if (result != Error.Ok)
         {
             AwaitingVerification.Remove(playerId);
-            EmitSignal(nameof(VerificationFailed), playerId);
+            verificationFailed?.Invoke(playerId);
         }
     }
 
@@ -86,6 +82,7 @@ public class PlayerVerification : EzNode
             // 	basic.loc = Vector2.ONE * (randi() % 100 - 50)
             // 	spawn_player(player_id, database.player_basics.select(username), result)
             RpcId(playerId, "ReceiveTokenVerificationResult", result, stateProcessing.LoggedInPlayers);
+
         }
         else
         {
@@ -110,7 +107,7 @@ public class PlayerVerification : EzNode
                 if (connectedPeers.Contains(playerId))
                 {
                     ReturnTokenVerificationResults(playerId, Error.Failed, null);
-                    EmitSignal(nameof(VerificationFailed), playerId);
+                    verificationFailed?.Invoke(playerId);
                 }
             }
         });

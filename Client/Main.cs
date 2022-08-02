@@ -32,11 +32,13 @@ namespace Client
             Container.RegisterInstance(certificate);
 
             Container.RegisterInstance(new ClientOptions<Entrance>("localhost", 1969));
+            Container.RegisterInstance(new ClientOptions<GameServer>("localhost", 1909));
             Container.RegisterSingleton<Models.Login>();
             Container.RegisterSingleton<Models.CreateAccount>();
 
             var typesToAddAsChild = new[] {
                 typeof(Entrance),
+                typeof(GameServer),
                 typeof(Presenters.Login),
                 typeof(Presenters.CreateAccount),
                 typeof(Presenters.MainMenu),

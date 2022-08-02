@@ -61,7 +61,7 @@ namespace Authentication
                 }
             }
             Print($"{username}: authentication results now sending to gateway server.");
-            RpcId(gatewayId, "ReceiveAuthenticationResults", playerId, result, token);
+            RpcId(gatewayId, nameof(Gateway.Authentication.ReceiveAuthenticationResults), playerId, result, token);
         }
 
         [Remote]

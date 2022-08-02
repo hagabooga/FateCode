@@ -6,12 +6,8 @@ namespace Gateway
 {
     public class Authentication : EzClient<Authentication>
     {
-        public delegate void ReceivedAuthenticationResults(int id, Error result, string token);
-        public delegate void ReceivedCreateAccountRequestResults(int id, Error result);
-
-        public event ReceivedAuthenticationResults receivedAuthenticationResults;
-        public event ReceivedCreateAccountRequestResults receivedCreateAccountRequestResults;
-
+        public event Handlers.IdResultToken receivedAuthenticationResults;
+        public event Handlers.IdResult receivedCreateAccountRequestResults;
 
         public Authentication(ClientOptions<Authentication> options) : base(options, true, null)
         {
@@ -35,14 +31,14 @@ namespace Gateway
         }
 
         [Remote]
-        void ReceiveAuthenticationResults(int playerId, Error result, string token)
+        public void ReceiveAuthenticationResults(int playerId, Error result, string token)
         {
             Print($"Results received and replying to player login request: {playerId}, {result}, {token}.");
             receivedAuthenticationResults?.Invoke(playerId, result, token);
         }
 
         [Remote]
-        void ReceiveCreateAccountRequestResults(int id, Error result)
+        public void ReceiveCreateAccountRequestResults(int id, Error result)
         {
             receivedCreateAccountRequestResults?.Invoke(id, result);
         }

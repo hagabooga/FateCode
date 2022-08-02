@@ -19,7 +19,7 @@ namespace Authentication
         {
             Print(server);
             var serverId = (int)servers[server];
-            RpcId(serverId, "ReceiveLoginToken", token, username);
+            RpcId(serverId, nameof(Server.HubConnection.ReceiveLoginToken), token, username);
         }
 
 

@@ -3,25 +3,28 @@ using System;
 using SimpleInjector;
 using Utility;
 
-public class Main : Node
+namespace Server
 {
-    public override void _Ready()
+    public class Main : Node
     {
-        var main = new SimpleInjector.Container();
+        public override void _Ready()
+        {
+            var main = new SimpleInjector.Container();
 
-        main.RegisterInstance(new ServerOptions<Server>(1909, 100));
-        main.RegisterInstance(new ClientOptions<HubConnection>("localhost", 1915));
+            main.RegisterInstance(new ServerOptions<GameServer>(1909, 100));
+            main.RegisterInstance(new ClientOptions<HubConnection>("localhost", 1915));
 
-        main.RegisterSingleton<StateProcessing>();
-        main.RegisterSingleton<PlayerVerification>();
-        main.RegisterSingleton<HubConnection>();
-        main.RegisterSingleton<Server>();
+            main.RegisterSingleton<StateProcessing>();
+            main.RegisterSingleton<PlayerVerification>();
+            main.RegisterSingleton<HubConnection>();
+            main.RegisterSingleton<GameServer>();
 
-        main.Verify();
+            main.Verify();
 
-        AddChild(main.GetInstance<StateProcessing>());
-        AddChild(main.GetInstance<PlayerVerification>());
-        AddChild(main.GetInstance<HubConnection>());
-        AddChild(main.GetInstance<Server>());
+            AddChild(main.GetInstance<StateProcessing>());
+            AddChild(main.GetInstance<PlayerVerification>());
+            AddChild(main.GetInstance<HubConnection>());
+            AddChild(main.GetInstance<GameServer>());
+        }
     }
 }

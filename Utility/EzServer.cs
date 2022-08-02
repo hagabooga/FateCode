@@ -7,6 +7,9 @@ namespace Utility
 {
     public abstract class EzServer<T> : EzNode
     {
+        public event Handlers.Id peerConnected, peerDisconnected;
+
+
         protected readonly NetworkedMultiplayerENet network = new NetworkedMultiplayerENet();
         protected readonly MultiplayerAPI multiplayerApi = new MultiplayerAPI();
         protected readonly ServerOptions<T> options;
@@ -58,11 +61,13 @@ namespace Utility
         protected virtual void OnNetworkPeerConnected(int id)
         {
             Print($"Server {Name}: Network peer {id} connected.");
+            peerConnected?.Invoke(id);
         }
 
         protected virtual void OnNetworkPeerDisconnected(int id)
         {
             Print($"Server {Name}: Network peer {id} disconnected.");
+            peerDisconnected?.Invoke(id);
         }
     }
 }
