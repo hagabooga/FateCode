@@ -33,6 +33,7 @@ namespace Server
             AwaitingVerification[playerId] = timeStamp;
             RpcId(playerId, nameof(Client.PlayerVerification.FetchToken));
         }
+
         public override void _PhysicsProcess(float delta)
         {
             Print(AwaitingVerification);
@@ -148,8 +149,8 @@ namespace Server
         public void ReceiveToken(string token)
         {
             var playerId = GetTree().GetRpcSenderId();
-            Verify(playerId, token);
             Print($"Verifying {playerId} with token {token}.");
+            Verify(playerId, token);
         }
 
         [Remote]
