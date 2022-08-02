@@ -144,7 +144,7 @@ namespace Server
         {
             var playerId = GetTree().GetRpcSenderId();
             Print($"Verifying {playerId} with token {token}.");
-            Verify(playerId, token);
+            Task.Run(() => Verify(playerId, token));
         }
 
         [Remote]
