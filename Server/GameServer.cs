@@ -35,11 +35,5 @@ namespace Server
             base._Ready();
             GetTree().NetworkPeer = network;
         }
-
-        [Remote]
-        public void ReceiveToken()
-        {
-            Print("LAOSDLAOSD");
-        }
     }
 }

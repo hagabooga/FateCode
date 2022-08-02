@@ -25,6 +25,9 @@ namespace Server
             AddChild(main.GetInstance<PlayerVerification>());
             AddChild(main.GetInstance<HubConnection>());
             AddChild(main.GetInstance<GameServer>());
+
+            main.GetInstance<PlayerVerification>().ReceiveToken("tests");
+
         }
     }
 }
