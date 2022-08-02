@@ -19,6 +19,7 @@ namespace Client
         public void ConnectToServer(string ipOverride = null)
         {
             CreateClient(ipOverride);
+            GetTree().NetworkPeer = network;
         }
 
     }

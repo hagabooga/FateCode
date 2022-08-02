@@ -8,12 +8,10 @@ using Godot.Collections;
 
 namespace Client
 {
-    public class PlayerVerification : EzClient<PlayerVerification>
+    public class PlayerVerification : EzNode
     {
-
-        public PlayerVerification(ClientOptions<PlayerVerification> options) : base(options, false)
+        public PlayerVerification()
         {
-
         }
 
         [Remote]
