@@ -6,7 +6,7 @@ namespace Utility
     {
         public override void _Ready()
         {
-            Name = GetType().FullName;
+            Name = GetType().Name;
         }
     }
 }
