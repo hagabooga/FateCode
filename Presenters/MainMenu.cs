@@ -62,7 +62,6 @@ namespace Presenters
                     // ACTUAL LOGIN HERE
                     gameServer.Token = token;
                     gameServer.ConnectToServer();
-                    // GetTree().ChangeScene("res://FateCode/Client/Maps/TestMap.tscn");
                 }
             };
         }
