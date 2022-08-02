@@ -10,18 +10,21 @@ namespace Client
 {
     public class PlayerVerification : EzNode
     {
-        public PlayerVerification()
+        private readonly GameServer server;
+
+        public PlayerVerification(GameServer server)
         {
+            this.server = server;
         }
 
         [Remote]
         public void FetchToken()
         {
-            RpcId(1, nameof(Server.PlayerVerification.ReceiveToken));
+            RpcId(1, nameof(Server.PlayerVerification.ReceiveToken), server.Token);
         }
 
         [Remote]
-        public void ReceiveTokenVerificationResult(Error result)
+        public void ReceiveTokenVerificationResult(Error result, Array loggedInPlayers)
         {
             if (result == Error.Ok)
             {

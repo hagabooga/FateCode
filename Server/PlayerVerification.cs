@@ -31,7 +31,12 @@ namespace Server
             Dictionary timeStamp = new Dictionary();
             timeStamp["timeStamp"] = OS.GetUnixTime();
             AwaitingVerification[playerId] = timeStamp;
-            RpcId(playerId, "FetchToken");
+            RpcId(playerId, nameof(Client.PlayerVerification.FetchToken));
+        }
+        public override void _PhysicsProcess(float delta)
+        {
+            Print(AwaitingVerification);
+            Print(ExpectedTokens);
         }
 
         public async void Verify(int playerId, string token)
