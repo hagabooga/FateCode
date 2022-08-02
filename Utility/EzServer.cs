@@ -9,7 +9,6 @@ namespace Utility
     {
         public event Handlers.Id peerConnected, peerDisconnected;
 
-
         protected readonly NetworkedMultiplayerENet network = new NetworkedMultiplayerENet();
         protected readonly MultiplayerAPI multiplayerApi = new MultiplayerAPI();
         protected readonly ServerOptions<T> options;

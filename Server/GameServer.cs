@@ -28,6 +28,11 @@ namespace Server
 
             playerVerification.verificationFailed += id => network.DisconnectPeer(id);
 
+        }
+
+        public override void _Ready()
+        {
+            base._Ready();
             GetTree().NetworkPeer = network;
         }
     }
