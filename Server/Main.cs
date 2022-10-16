@@ -2,6 +2,7 @@ using Godot;
 using System;
 using SimpleInjector;
 using Godot.Collections;
+using System.Threading.Tasks;
 
 namespace Server;
 
@@ -16,6 +17,12 @@ public sealed partial class Main : Node
     public override void _Ready()
     {
         multiplayerPeer.CreateServer(4949);
+        multiplayerPeer.PeerConnected += async id =>
+        {
+            await Task.Delay(1000);
+            // RpcId(id, nameof(Main.ad))
+        };
+
         Multiplayer.MultiplayerPeer = multiplayerPeer;
 
     }

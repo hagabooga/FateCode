@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvcp81e4o4krl"]
+
+[ext_resource type="Script" path="res://FateCode/Client/Main.cs" id="1_ps1j1"]
+[ext_resource type="Texture2D" uid="uid://bb1eshrqbct4h" path="res://icon.svg" id="2_j15tb"]
+[ext_resource type="PackedScene" uid="uid://bxd44vpq5utki" path="res://FateCode/Client/Player.tscn" id="2_kyyfh"]
+
+[sub_resource type="Theme" id="Theme_tjlty"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ps1j1")
+PlayerScene = ExtResource("2_kyyfh")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("2_j15tb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 44.0
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HostButton" type="Button" parent="CanvasLayer/Menu/VBoxContainer"]
+layout_mode = 2
+offset_right = 44.0
+offset_bottom = 31.0
+theme = SubResource("Theme_tjlty")
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/Menu/VBoxContainer"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 44.0
+offset_bottom = 66.0
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://FateCode/Client/Player.tscn")
+spawn_path = NodePath(".")
